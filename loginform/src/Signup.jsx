@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Signup = () => {
 
@@ -7,11 +8,16 @@ const Signup = () => {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        axios.post('', {name, email, password})
+    }
+
   return (
     <div className='d-flex justify-content-center align-items-center bg-secondary vh-100'>
         <div className="bg-white p-3 rounded w-25">
             <h2>Register</h2>
-            <form action="">
+            <form action="" onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="email">
                         <strong>Name</strong>
