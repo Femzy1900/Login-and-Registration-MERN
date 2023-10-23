@@ -1,5 +1,8 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
 
@@ -10,7 +13,11 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     axios.post('http://localhost:3001/login', { email, password})
-    .then(result => {console.log(result)
+    .then(result => {
+      console.log(result)
+      if(result.data === "Success") {
+        navigate('/home')
+      }
     navigate('/home')
     })
     .catch(err => console.log(err))
@@ -48,12 +55,12 @@ const Login = () => {
                     />
                 </div>
                 <button type='submit' className='btn btn-success border w-100 rounded-0'>
-                    Register
+                   Login
                 </button>
             </form>
-            <p>Already Have an Account</p>
+            <p>Don't have an account yet?</p>
             <Link to="/login" type='submit' className='btn  border w-100 bg-light rounded-0 '>
-                Login
+                Register
             </Link>
         </div>
       
